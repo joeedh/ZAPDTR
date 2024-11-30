@@ -289,13 +289,13 @@ endif()
 ################################################################################
 # MSVC runtime library
 ################################################################################
-if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+if (false) #CMAKE_SYSTEM_NAME STREQUAL "Windows")
 foreach(ZTarget ${PROJECT_NAME} ZAPD)
 	get_property(MSVC_RUNTIME_LIBRARY_DEFAULT TARGET ${ZTarget} PROPERTY MSVC_RUNTIME_LIBRARY)
 	if("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "x64")
 		string(CONCAT "MSVC_RUNTIME_LIBRARY_STR"
 			$<$<CONFIG:Debug>:
-				MultiThreadedDebug
+				MuDebug
 			>
 			$<$<CONFIG:Release>:
 				MultiThreaded
@@ -482,6 +482,9 @@ else()
 		Threads::Threads
 	)
 endif()
+
+target_link_options(ZAPD PUBLIC 
+)
 
 if(CMAKE_SYSTEM_NAME MATCHES "NintendoSwitch|CafeOS")
 add_library(pathconf OBJECT pathconf.c)

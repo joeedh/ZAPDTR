@@ -93,9 +93,13 @@ volatile int numWorkersLeft = 0;
 
 extern void ImportExporters();
 
+#include "ImageBackend.h"
+
 extern "C" int zapd_main(int argc, char* argv[])
 {
 	// Syntax: ZAPD.out [mode (btex/bovl/e)] (Arbritrary Number of Arguments)
+	ImageBackend *reader = new ImageBackend();
+	reader->ReadPng("C:\\dev\\zelda-oot-pc\\soh\\assets\\custom\\objects\\object_box\\gGoldTreasureChestFrontTex.rgb5a1.png");
 
 	if (argc < 2)
 	{
